@@ -674,3 +674,40 @@ body {
 .cosmic-300 {
   color: #64D2FF;
 }
+
+/* Spline 3D Scene Styles */
+.spline-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.spline-overlay {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* Performance optimizations for 3D scenes */
+.spline-scene {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Responsive 3D adjustments */
+@media (max-width: 768px) {
+  .spline-container {
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spline-container {
+    display: none;
+  }
+}

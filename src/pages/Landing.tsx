@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Clock, Users, ChefHat, ArrowRight, Utensils, Star, Sparkles, Zap, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SplineScene from '../components/Spline/SplineScene';
 
 const Landing: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -29,8 +30,25 @@ const Landing: React.FC = () => {
 
   return (
     <div className="min-h-screen cosmic-gradient relative overflow-hidden">
+      {/* Spline 3D Background Scene */}
+      <div className="absolute inset-0 z-0">
+        <SplineScene 
+          scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
+          className="opacity-30"
+          fallback={
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-20 h-20 glass-spinner rounded-full animate-spin mx-auto mb-6"></div>
+                <p className="text-gray-300 text-lg">Loading Cosmic Experience...</p>
+                <p className="text-gray-500 text-sm mt-2">Preparing your 3D journey</p>
+              </div>
+            </div>
+          }
+        />
+      </div>
+
       {/* Enhanced Dynamic Background Elements with Parallax */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden z-1">
         {/* Floating Particles with Parallax */}
         {[...Array(12)].map((_, i) => (
           <div
