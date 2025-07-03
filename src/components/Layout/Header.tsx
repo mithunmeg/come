@@ -15,6 +15,45 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
   const clickCountRef = useRef(0);
   const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const starWarsQuotes = [
+    {
+      quote: "You are on this council, but we do not grant you the rank of Master.",
+      author: "Mace Windu"
+    },
+    {
+      quote: "Do or do not, there is no try.",
+      author: "Yoda"
+    },
+    {
+      quote: "The Force will be with you, always.",
+      author: "Obi-Wan Kenobi"
+    },
+    {
+      quote: "I find your lack of faith disturbing.",
+      author: "Darth Vader"
+    },
+    {
+      quote: "Fear is the path to the dark side.",
+      author: "Yoda"
+    },
+    {
+      quote: "These aren't the droids you're looking for.",
+      author: "Obi-Wan Kenobi"
+    },
+    {
+      quote: "I've got a bad feeling about this.",
+      author: "Various Characters"
+    },
+    {
+      quote: "The ability to destroy a planet is insignificant next to the power of the Force.",
+      author: "Darth Vader"
+    }
+  ];
+
+  const [currentQuote] = useState(() => 
+    starWarsQuotes[Math.floor(Math.random() * starWarsQuotes.length)]
+  );
+
   const handleIconClick = () => {
     clickCountRef.current += 1;
     
@@ -25,19 +64,19 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
       clearTimeout(clickTimeoutRef.current);
     }
     
-    // If this is the second click within the timeout period, show the modal
-    if (clickCountRef.current === 2) {
-      console.log('Double click detected! Showing modal...');
+    // If this is the fifth click within the timeout period, show the modal
+    if (clickCountRef.current === 5) {
+      console.log('Five clicks detected! Showing Star Wars quote...');
       setShowQuoteModal(true);
       clickCountRef.current = 0; // Reset counter
       return;
     }
     
-    // Set timeout to reset click count
+    // Set timeout to reset click count (2 seconds window for 5 clicks)
     clickTimeoutRef.current = setTimeout(() => {
       console.log('Resetting click count');
       clickCountRef.current = 0;
-    }, 300); // 300ms window for double click
+    }, 2000); // 2 second window for 5 clicks
   };
 
   return (
@@ -49,8 +88,9 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
               <div className="flex-shrink-0 flex items-center group">
                 <button 
                   onClick={handleIconClick}
-                  className="w-16 h-16 flex items-center justify-center cosmic-glow mr-4 group-hover:scale-110 transition-transform duration-300 icon-glow cursor-pointer rounded-full bg-transparent border-none p-0"
+                  className="w-16 h-16 flex items-center justify-center cosmic-glow mr-4 group-hover:scale-110 transition-transform duration-300 icon-glow cursor-pointer rounded-full bg-transparent border-none p-0 hover:animate-pulse"
                   style={{ outline: 'none' }}
+                  title="Click me 5 times for a surprise!"
                 >
                   <img 
                     src="/site-icon.png" 
@@ -154,16 +194,16 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
               </div>
               
               <div className="mb-6">
-                <div className="text-2xl font-bold cosmic-text mb-4">Master Windu Speaks</div>
+                <div className="text-2xl font-bold cosmic-text mb-4">A Galaxy Far, Far Away...</div>
                 <blockquote className="text-lg text-gray-200 leading-relaxed italic">
-                  "You are on this council, but we do not grant you the rank of Master."
+                  "{currentQuote.quote}"
                 </blockquote>
-                <cite className="block text-sm text-gray-400 mt-4 font-medium">— Mace Windu</cite>
+                <cite className="block text-sm text-gray-400 mt-4 font-medium">— {currentQuote.author}</cite>
               </div>
 
               <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
                 <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                <span>The Force is strong with this one</span>
+                <span>May the Force be with you</span>
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
               </div>
             </div>

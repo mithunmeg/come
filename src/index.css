@@ -371,6 +371,35 @@ body {
   animation-duration: 14s;
 }
 
+/* Parallax Scroll Effects */
+.parallax-slow {
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-medium {
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-fast {
+  transition: transform 0.1s ease-out;
+}
+
+/* Enhanced Parallax Layers */
+.parallax-layer-1 {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.parallax-layer-2 {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.parallax-layer-3 {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
 /* Responsive Grid */
 .responsive-grid {
   display: grid;
@@ -386,6 +415,10 @@ body {
   
   .hover-lift:hover {
     transform: translateY(-6px) scale(1.02);
+  }
+  
+  .enhanced-hover:hover {
+    transform: translateY(-8px) scale(1.02) rotateX(1deg);
   }
 }
 
@@ -627,4 +660,17 @@ body {
   border-radius: inherit;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: xor;
+}
+
+/* Cosmic Color Utilities */
+.cosmic-500 {
+  color: #007AFF;
+}
+
+.cosmic-400 {
+  color: #5AC8FA;
+}
+
+.cosmic-300 {
+  color: #64D2FF;
 }
